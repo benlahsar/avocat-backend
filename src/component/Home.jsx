@@ -37,13 +37,14 @@ function Home() {
     { name: "Naciri Bennani" },
   ];
 
-  const blogPosts = [
-    { img: blogImages[0], title: "Comment choisir le bon avocat pour votre affaire ?" },
-    { img: blogImages[1], title: "Les dernières réformes juridiques au Maroc" },
-    { img: blogImages[2], title: "Conseils pour une consultation juridique réussie" },
-    { img: blogImages[3], title: "Droits des employés : ce que vous devez savoir" },
+  const articles = [
+    { id: 1, img: blogImages[0], title: "Comment choisir le bon avocat pour votre affaire ?" },
+    { id: 2, img: blogImages[1], title: "Les dernières réformes juridiques au Maroc" },
+    { id: 3, img: blogImages[2], title: "Conseils pour une consultation juridique réussie" },
+    { id: 4, img: blogImages[3], title: "Droits des employés : ce que vous devez savoir" },
   ];
-
+  
+  
   const services = [
     { img: serviceImages[0], title: "Consultation en ligne", description: "Discutez avec un avocat depuis chez vous." },
     { img: serviceImages[1], title: "Trouvez votre Avocat", description: "Accédez à une liste d'avocats qualifiés." },
@@ -167,19 +168,26 @@ function Home() {
         </motion.div>
       </section>
 
-      {/* Blog */}
-      <section className="py-12 px-4 text-center">
-        <h2 className="text-2xl font-semibold text-gray-800">Les derniers articles de blog</h2>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 container mx-auto">
-          {blogPosts.map((post, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center">
-              <img src={post.img} alt={post.title} className="w-full h-40 object-cover mb-4 rounded-md shadow" />
-              <h3 className="text-lg font-semibold text-blue-900">{post.title}</h3>
-              <a href="#" className="mt-2 text-indigo-700 hover:underline block">EN SAVOIR PLUS →</a>
-            </div>
-          ))}
-        </div>
-      </section>
+     {/* Blog */}
+<section className="py-12 px-4 text-center">
+  <h2 className="text-2xl font-semibold text-gray-800">Les derniers articles de blog</h2>
+  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 container mx-auto">
+    {articles.map((article, index) => (
+      <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center">
+        <img src={article.img} alt={article.title} className="w-full h-40 object-cover mb-4 rounded-md shadow" />
+        <h3 className="text-lg font-semibold text-blue-900">{article.title}</h3>
+        <Link
+          to={`/blog/${article.id}`}
+          className="mt-2 text-indigo-700 hover:underline block"
+        >
+          EN SAVOIR PLUS →
+        </Link>
+      </div>
+    ))}
+  </div>
+</section>
+
+
     </main>
   );
 }

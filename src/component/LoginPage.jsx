@@ -7,7 +7,7 @@ function LoginPage() {
   <div
     className="hidden lg:flex w-1/2 items-center justify-center bg-cover bg-center"
     style={{
-      backgroundImage: "url('/img/balanc.jpeg')", // CORRECT !!
+      backgroundImage: "url('/img/balanc.jpeg ')", // CORRECT !!
     }}
   >
   </div>

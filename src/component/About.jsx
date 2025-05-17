@@ -1,27 +1,33 @@
 import React from "react";
+import AvocatInfo from "./AvocatInfo";  // Importer AvocatInfo
 
-
-const About = () => {
+function About() {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-blue-900 text-white">
-      {/* Image en arrière-plan */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/img1.jpg"
-          alt="Background"
-          className="w-full h-full object-cover opacity-30"
-        />
+    <div>
+      <div
+        className="relative py-24 text-center bg-cover bg-center"
+        style={{
+          backgroundImage: `url('/img/bal.jpeg')`, 
+        }}
+      >
+        <div className="absolute inset-0 bg-sky-950 opacity-10"></div> {/* légère transparence */}
+        
+        {/* Contenu de la bannière */}
+        <div className="relative z-10">
+          <h1 className="text-4xl font-bold text-white">À propos</h1>
+          <p className="text-sm mt-2 text-gray-300">
+            <a href="/" className="hover:underline">
+              Accueil
+            </a>{" "}
+            {" > "} À propos
+          </p>
+        </div>
       </div>
-
-      {/* Contenu */}
-      <div className="relative z-10 text-center">
-        <h1 className="text-4xl font-bold">À propos</h1>
-        <p className="mt-2 text-lg">
-          <span className="text-gray-300">Accueil</span> – <span className="font-semibold">À propos de nous</span>
-        </p>
-      </div>
-    </section>
+      
+      {/* Ajouter la section AvocatInfo ici */}
+      <AvocatInfo />
+    </div>
   );
-};
+}
 
 export default About;

@@ -9,11 +9,22 @@ import LoginPage from "./component/LoginPage";
 import RegisterPage from "./component/RegistrerPage";
 import About from "./component/About";
 import Avocats from "./component/Avocats";
+import DevenirMembre from "./component/DevenirMembre";
+import Contact from "./component/Contact";
+import DerniersArticles from "./component/DerniersArticles";
+// import About from "./component/About";
 // import LawyersPage from "./component/LayersPage";
 // import Services from "./Services";
-// import About from "./About";
+// import About from "./component/About";
 // import News from "./News";
 // import Contact from "./Contact";
+
+
+
+
+
+
+// Tableau des articles
 
 function App() {
   return (
@@ -26,6 +37,11 @@ function App() {
         <Route path="/regitrer" element={<RegisterPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/avocats" element={<Avocats />} />
+        <Route path="/devenir-membre" element={<DevenirMembre />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/actualites" element={<DerniersArticles/>} />
+
+
 
 
 
