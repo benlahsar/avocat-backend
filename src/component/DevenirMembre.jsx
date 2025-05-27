@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios'; // Assurez-vous d'importer axios pour les requêtes API
 
 export default function DevenirMembre() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ export default function DevenirMembre() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);  // Pour suivre l'état de chargement
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,8 +17,27 @@ export default function DevenirMembre() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+
+    // Empêcher la soumission si une requête est déjà en cours
+    if (loading) return;
+
+    setLoading(true);  // Début de l'envoi
+
+    axios
+      .post("http://127.0.0.1:8000/api/avocats", formData)
+      .then(response => {
+        console.log("Inscription réussie:", response.data);
+        setSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setTimeout(() => setSubmitted(false), 3000);  // Message de succès pendant 3 secondes
+      })
+      .catch(error => {
+        console.error("Erreur:", error);
+        alert("Erreur lors de l'inscription");
+      })
+      .finally(() => {
+        setLoading(false);  // Réinitialise l'état de chargement
+      });
   };
 
   return (
@@ -89,8 +110,9 @@ export default function DevenirMembre() {
           <button
             type="submit"
             className="w-full bg-[#140051] text-white py-2 rounded hover:bg-indigo-100 transition"
+            disabled={loading}  // Désactiver le bouton pendant le chargement
           >
-            S’INSCRIRE
+            {loading ? "Envoi en cours..." : "S’INSCRIRE"}
           </button>
           {submitted && (
             <p className="mt-4 text-center text-green-600 font-semibold bg-green-100 p-2 rounded">

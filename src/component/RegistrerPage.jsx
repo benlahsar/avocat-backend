@@ -1,6 +1,19 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import api, { getCsrfToken } from "../api/api";
 
 function RegisterPage() {
+  const [formData, setFormData] = useState();
+
+  const handleSubmit = async () => {
+    try {
+      await getCsrfToken();
+      const response = await api.post("/api/login", formData);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
@@ -15,10 +28,13 @@ function RegisterPage() {
         </p>
 
         {/* Formulaire */}
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Nom */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               Nom Complet
             </label>
             <input
@@ -30,9 +46,28 @@ function RegisterPage() {
             />
           </div>
 
+          <div>
+            <label
+              htmlFor="cin"
+              className="block text-sm font-medium text-gray-700"
+            >
+              CIN
+            </label>
+            <input
+              type="text"
+              id="cin"
+              placeholder="CIN"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Adresse E-mail
             </label>
             <input
@@ -46,7 +81,10 @@ function RegisterPage() {
 
           {/* Mot de passe */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Mot de passe
             </label>
             <input
@@ -60,7 +98,10 @@ function RegisterPage() {
 
           {/* Confirmation Mot de passe */}
           <div>
-            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="confirm-password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Confirmer le mot de passe
             </label>
             <input
